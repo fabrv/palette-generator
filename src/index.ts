@@ -39,10 +39,28 @@ const template = `
       transform: translateX(-50%);
       top: 25px;
     }
+
+    #popup {
+      transition: all .3s;
+      opacity: 0;
+      padding: 10px; 
+      background-color: white; 
+      border-radius: 5px;
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 25px;
+      z-index: 1000;
+    }
+    
+    .active {
+      opacity: 1 !important;
+    }
   </style>
   {{{font}}}
 </head>
 <body>
+  <div id="popup">Copied to clipboard</div>
   <input id="field" style="position: fixed; top: -100px">
   <div style="position: fixed; width: 100%; top: 50%; transform: translateY(-50%); z-index: 1000; text-align: center;">
     <div style="color: white; opacity: 0.85; font-size: 10vw;">Lorem impsum.</div>
@@ -70,6 +88,11 @@ const template = `
 
       /* Copy the text inside the text field */
       document.execCommand("copy");
+
+      document.getElementById('popup').classList.add('active')
+      setTimeout(() => {
+        document.getElementById('popup').classList.remove('active')
+      }, 3000);
     }
   </script>
 </body>

@@ -83,6 +83,13 @@ const template = `
     function clipboard(val) {
       /* Get the text field */
       var copyText = document.getElementById("field");
+
+      copyText.readOnly = true;
+      copyText.focus();
+      setTimeout(function(){
+        copyText.readOnly = false;
+      },1000)
+
       copyText.value = val
 
       /* Select the text field */
